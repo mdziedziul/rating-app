@@ -1,0 +1,91 @@
+$colors-list: #c0498b #8b59be #596abe #599ebe #59bea8 #67cd75 #9acd67 #cebe5a #d7954b #e75637 #d12f2f;
+$borders-list: #9f3771 #7240a4 #4051a4 #4084a4 #40a48e #41c052 #81c041 #bdab38 #c47c2b #d23a19 #a82525;
+$colors-length: length($colors-list);
+
+
+.title {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 64px;
+    font-weight: 400;
+    text-align: center;
+    color: #37b4be;
+    margin: .67em 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.label {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.average {
+    font-weight: 600;
+}
+
+.page-body {
+    margin: 0px 30px;
+}
+
+.rating-btn {
+    margin-top: 8px;
+    display: inline-block;
+    padding: 8px 0;
+    min-width: 56px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 14px;
+    background-color: #fff;
+    border: 1px solid #e7e7e7;
+    border-right: none;
+
+    @for $i from 1 through $colors-length {
+        &:nth-of-type(#{$colors-length}n+#{$i}) {
+            color: nth($colors-list, $i);     
+        } 
+    }
+
+    &:last-child {
+        border-right: 1px solid #e7e7e7;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: #fff;
+        cursor: pointer;
+        outline: none;
+        @for $i from 1 through $colors-length {
+            &:nth-of-type(#{$colors-length}n+#{$i}) {
+                border: 1px solid nth($borders-list, $i);   
+                background-color: nth($colors-list, $i);   
+            } 
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .label {
+        display: block;
+        text-align: center;
+    }
+    p.label {
+        text-align: left;
+    }
+    .rating-wrapper {
+        width: 285px;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .page-body {
+        max-width: 1200px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .rating-wrapper {
+        margin-left: 20%;
+    }
+}

@@ -1,0 +1,11 @@
+<app-header></app-header>
+
+<div class="page-body">
+  <h1 class="title">Tržiště</h1>
+  <div class="rating-wrapper">
+    <span class="label">Ohodnocení</span>
+    <button class="rating-btn" *ngFor="let rating of ratings" (click)="getLoansCountByRating(rating)">{{ rating }}</button> 
+    <p class="label">Průměrna výši půjček: <span class="average">{{ average }}</span></p>
+  </div>
+</div>
+
