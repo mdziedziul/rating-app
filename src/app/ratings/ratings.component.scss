@@ -21,6 +21,17 @@ $colors-length: length($colors-list);
 
 .average {
     font-weight: 600;
+    margin-left: 5px;
+}
+
+.average-content {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+
+    img {
+        width: 50px;
+    }
 }
 
 .page-body {
@@ -50,8 +61,7 @@ $colors-length: length($colors-list);
     }
 
     &:hover,
-    &:active,
-    &:focus {
+    &.active {
         color: #fff;
         cursor: pointer;
         outline: none;
@@ -62,6 +72,22 @@ $colors-length: length($colors-list);
             } 
         }
     }
+
+    &[disabled] {
+        background-color: #fafafa;
+
+        &:hover {
+            background-color: #fafafa; 
+            border: 1px solid #e7e7e7;
+            border-right: none;
+            cursor: initial;
+            @for $i from 1 through $colors-length {
+                &:nth-of-type(#{$colors-length}n+#{$i}) {
+                    color: nth($colors-list, $i);     
+                } 
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -70,6 +96,7 @@ $colors-length: length($colors-list);
         text-align: center;
     }
     p.label {
+        display: flex;
         text-align: left;
     }
     .rating-wrapper {

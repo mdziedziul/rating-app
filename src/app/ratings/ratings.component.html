@@ -4,8 +4,16 @@
   <h1 class="title">Tržiště</h1>
   <div class="rating-wrapper">
     <span class="label">Ohodnocení</span>
-    <button class="rating-btn" *ngFor="let rating of ratings" (click)="getLoansCountByRating(rating)">{{ rating }}</button> 
-    <p class="label">Průměrna výši půjček: <span class="average">{{ average }}</span></p>
+    <button class="rating-btn" *ngFor="let rating of ratings" [disabled]="average == null && selectedRating != rating" [ngClass]="{'active' : selectedRating == rating}" (click)="getLoansCountByRating(rating)">{{ rating }}</button> 
+    <p class="label average-content">Průměrná výše půjček: 
+        <ng-template [ngIf]="average" [ngIfElse]="loading">
+          <span class="average">{{ average }}</span>
+        </ng-template>
+    </p>
   </div>
 </div>
+
+<ng-template #loading>
+    <img src="assets/images/spinner.svg">
+</ng-template>
 

@@ -13,6 +13,7 @@ export class RatingsComponent implements OnInit {
   loans: Loan[];
   ratings: Rating[];
   average: any = 'Vyber ohodnocení';
+  selectedRating = null;
 
   constructor(
     private loansService: LoansService
@@ -23,6 +24,9 @@ export class RatingsComponent implements OnInit {
   }
 
   getLoansCountByRating(rating) {
+    this.average = null;
+    this.selectedRating = rating;
+
     this.loansService.getLoansCountByRating(rating).subscribe(
       resp => {
         const size = resp.headers.get('x-total');
